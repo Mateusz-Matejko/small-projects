@@ -1,54 +1,78 @@
 import json
 from random import choice
 
-start_money = 1
-expected_win = 100
-chose_to_win = "red"
+# Starting variables that simulation was made for
+start_money = 1  # the money player start with
+expected_win = 100 # the money player is at least expecting to win
 
-bet_money = start_money
+# the following program was written for color Red, but was also tested for color black.
+chose_to_win = "red" # the color player will always be betting for
 
-red_counter = 0
-green_counter = 0
-black_counter = 0
 
+# defining casino game board
 green = [0]
-black = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]
-red = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]
+red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
 whole_roulette = green + black + red
 
-total_spent = 0
+
+def main():
+    list_of_results = roulette_simulation(amount_of_tries=1)
+    write_results(results=list_of_results)
 
 
-for _ in range(76):
-    won_turns = []
-    turn = 0
-    while True:
-        bet_money = 2 * bet_money
-        turn += 1
-        res = choice(whole_roulette)
-        if res in red and bet_money > expected_win and bet_money > (0.5 * total_spent):
-            red_counter += 1
-            won_turns.append(turn)
-            simulation_details = {}
-            won_turns = sorted(won_turns)
-            simulation_details["red_counter"] = red_counter
-            simulation_details["black_counter"] = black_counter
-            simulation_details["green_counter"] = green_counter
-            simulation_details["final_bet_money"] = bet_money
-            simulation_details["bet_turn"] = turn
-            simulation_details["total_spent"] = total_spent
-            simulation_details["won_amount"] = bet_money * 2 - total_spent
-            simulation_details["longest_lose_streak"] = won_turns[-1]
-            simulation_details["shortest_lose_streak"] = won_turns[0]
-            simulation_details[f"average_games_to_be_on_plus_for_{len(won_turns)}_games"] = sum(won_turns) / len(
-                won_turns)
-            with open("results-holder.json", "a") as f:
-                json.dump(simulation_details, f, indent=2, sort_keys=True)
-            break
-        elif res in black:
-            black_counter += 1
-            continue
-        elif res in green:
-            green_counter += 1
-            continue
-        total_spent += bet_money
+def roulette_simulation(amount_of_tries):
+    # list that keeps all the result details for further analysis
+    final_results = []
+    for _ in range(amount_of_tries):
+        current_bet = start_money
+        total_spent = 0
+        turn = 0
+        red_counter = 0
+        green_counter = 0
+        black_counter = 0
+        next_bet = 0
+        player_wallet = 0
+        while True:
+            if next_bet != 0:
+                current_bet = next_bet
+            turn += 1
+            total_spent += current_bet
+            result = choice(whole_roulette)
+            next_bet = current_bet * 2
+            if result in red and current_bet + player_wallet > expected_win:
+                player_wallet += current_bet
+                red_counter += 1
+                simulation_details = {}
+                ...
+                simulation_details["red_counter"] = red_counter
+                simulation_details["black_counter"] = black_counter
+                simulation_details["green_counter"] = green_counter
+                simulation_details["final_bet_money"] = current_bet
+                simulation_details["final_bet_turn"] = turn
+                simulation_details["total_spent"] = total_spent
+                simulation_details["won_amount"] = player_wallet
+                final_results.append(simulation_details)
+                break
+            elif result in red:
+                red_counter += 1
+                player_wallet += current_bet
+                continue
+            elif result in black:
+                black_counter += 1
+                player_wallet -= current_bet
+                continue
+            elif result in green:
+                green_counter += 1
+                player_wallet -= current_bet
+                continue
+    return final_results
+
+
+def write_results(results):
+    with open("results-holder.json", "a") as f:
+        json.dump(results, f, indent=2, sort_keys=True)
+
+
+if __name__ == '__main__':
+    main()
