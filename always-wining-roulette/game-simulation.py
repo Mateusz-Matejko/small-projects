@@ -5,6 +5,9 @@ from random import choice
 start_money = 1  # the money player start with
 expected_win = 100  # the money player is at least expecting to win
 
+# I decided to set the research sample for exact 1 milion tries.
+size_of_research_sample = 1000000
+
 # the following program was written for color Red, but was also tested for color black.
 chose_to_win = "red"  # the color player will always be betting for
 
@@ -16,9 +19,9 @@ black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
 whole_roulette = green + black + red
 
 
-def main():
+def main(size_of_research):
     # function making simulation of game returning list of collected results of simulation
-    list_of_results = roulette_simulation(amount_of_tries=1)
+    list_of_results = roulette_simulation(amount_of_tries=size_of_research)
     # writing collected results
     write_results(results=list_of_results)
 
@@ -26,7 +29,7 @@ def main():
 def roulette_simulation(amount_of_tries):
     # list that keeps all the result details for further analysis
     final_results = []
-    for _ in range(amount_of_tries):
+    for try_number in range(amount_of_tries):
         # starting variables for each game
         current_bet = start_money
         total_spent = 0
@@ -36,10 +39,13 @@ def roulette_simulation(amount_of_tries):
         black_counter = 0
         next_bet = 0
         player_wallet = 0
+        lowest_player_wallet = player_wallet
         # actual game simulation
         while True:
             if next_bet != 0:
                 current_bet = next_bet
+            if player_wallet < lowest_player_wallet:
+                lowest_player_wallet = player_wallet
             turn += 1
             total_spent += current_bet
             result = choice(whole_roulette)
@@ -51,6 +57,8 @@ def roulette_simulation(amount_of_tries):
                 simulation_details = {}
                 ...
                 # create dictionary-summary of simulation with details.
+                simulation_details["lowest_player_wallet"] = lowest_player_wallet
+                simulation_details["try_number"] = try_number + 1
                 simulation_details["red_counter"] = red_counter
                 simulation_details["black_counter"] = black_counter
                 simulation_details["green_counter"] = green_counter
@@ -85,4 +93,4 @@ def write_results(results):
 
 
 if __name__ == '__main__':
-    main()
+    main(size_of_research=size_of_research_sample)
