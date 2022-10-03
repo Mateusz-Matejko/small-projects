@@ -3,10 +3,10 @@ from random import choice
 
 # Starting variables that simulation was made for
 start_money = 1  # the money player start with
-expected_win = 100 # the money player is at least expecting to win
+expected_win = 100  # the money player is at least expecting to win
 
 # the following program was written for color Red, but was also tested for color black.
-chose_to_win = "red" # the color player will always be betting for
+chose_to_win = "red"  # the color player will always be betting for
 
 
 # defining casino game board
@@ -17,7 +17,9 @@ whole_roulette = green + black + red
 
 
 def main():
+    # function making simulation of game returning list of collected results of simulation
     list_of_results = roulette_simulation(amount_of_tries=1)
+    # writing collected results
     write_results(results=list_of_results)
 
 
@@ -25,6 +27,7 @@ def roulette_simulation(amount_of_tries):
     # list that keeps all the result details for further analysis
     final_results = []
     for _ in range(amount_of_tries):
+        # starting variables for each game
         current_bet = start_money
         total_spent = 0
         turn = 0
@@ -33,6 +36,7 @@ def roulette_simulation(amount_of_tries):
         black_counter = 0
         next_bet = 0
         player_wallet = 0
+        # actual game simulation
         while True:
             if next_bet != 0:
                 current_bet = next_bet
@@ -40,11 +44,13 @@ def roulette_simulation(amount_of_tries):
             total_spent += current_bet
             result = choice(whole_roulette)
             next_bet = current_bet * 2
+            # go to end_game summary if following conditions are satisfied
             if result in red and current_bet + player_wallet > expected_win:
                 player_wallet += current_bet
                 red_counter += 1
                 simulation_details = {}
                 ...
+                # create dictionary-summary of simulation with details.
                 simulation_details["red_counter"] = red_counter
                 simulation_details["black_counter"] = black_counter
                 simulation_details["green_counter"] = green_counter
@@ -53,15 +59,19 @@ def roulette_simulation(amount_of_tries):
                 simulation_details["total_spent"] = total_spent
                 simulation_details["won_amount"] = player_wallet
                 final_results.append(simulation_details)
+                # go to next simulation game
                 break
+            # if result is red without all conditions satisfied, do the following.
             elif result in red:
                 red_counter += 1
                 player_wallet += current_bet
                 continue
+            # if result is black without all conditions satisfied, do the following.
             elif result in black:
                 black_counter += 1
                 player_wallet -= current_bet
                 continue
+            # if result is green without all conditions satisfied, do the following.
             elif result in green:
                 green_counter += 1
                 player_wallet -= current_bet
