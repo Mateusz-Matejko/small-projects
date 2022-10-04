@@ -1,0 +1,5 @@
+,black_counter,final_bet_money,green_counter,lowest_player_wallet,red_counter,total_spent,try_number,won_amount
+max,29,17179869184,6,0,7,34359738367,1000000,33554455
+mean,4,39480,0,-38497,4,78960,500000,1319
+min,0,64,0,-17178820555,2,127,1,101
+std,2,19467952,0,19466113,1,38935905,288675,83296

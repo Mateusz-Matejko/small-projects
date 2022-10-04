@@ -1,5 +1,5 @@
 import json
-import csv_creation as pd
+import pandas as pd
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
 
 
 def read_result():
-    with open("average_result.json", "r") as f:
+    with open("average_results.json", "r") as f:
         result = json.load(f)
         return result
 

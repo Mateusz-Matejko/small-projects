@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 # Initialize SQL_Alchemy
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Casino.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 db = SQLAlchemy(app)
 
 # Initialize Alembic
@@ -20,9 +22,6 @@ def get_result():
     with open("results-holder.json", "r") as f:
         result = json.load(f)
         return result
-
-
-result = get_result()
 
 
 class Roulette(db.Model):
@@ -43,7 +42,7 @@ class Roulette(db.Model):
         return f"Try: {str(self.try_number)}"
 
     def __repr__(self):
-        ...
+        {}
 
 
 db.create_all()
