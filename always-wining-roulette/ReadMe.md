@@ -29,7 +29,33 @@ I came up with idea that those simple assumptions combined with always double be
 - total_money_spent
 - won_amount
 
+### Data visualised:
+I'am learning tableau :) 
+- [Specific color values](https://public.tableau.com/app/profile/fgoi/viz/Roullettebreaking-Specificcolorvalues/Sheet1)
+- [Final won amount with final bet corelation](https://public.tableau.com/app/profile/fgoi/viz/Roullettebreaking-Finalwonamountandfinalbetcorelation/Sheet4)
+- [Player wallet during game](https://public.tableau.com/app/profile/fgoi/viz/Roullettebreaking-PlayerWalletduringandaftergame/Sheet3)
 
+### Conclusion: 
+This leads me to conclusion where this strategy is correct in mathematical.
+
+With expected win set to above 100 Coins:
+- the average win is over 1,3k  
+- tha average lowest wallet per game was 39k
+- the average total spent per game was 79k
+- the lowest player wallet during game was 17 Trillion
+- the highest win after game was 33,5 Million
+
+Specific colors was rolled:
+- red was rolled ( min: 2, max: 7, avg: 4.72)
+- black was rolled ( min: 0, max: 29, avg: 4,72)
+- green was rolled ( min: 0, max: 6, avg: 0,26
+
+#
+#
+
+This startegy is 100% working but today's casino has
+the limits of single bet amount so it's just fun fact
+in the end of the day.
 ## Author:
 
 - [@Mateusz-Matejko](https://www.github.com/Mateusz-Matejko)
