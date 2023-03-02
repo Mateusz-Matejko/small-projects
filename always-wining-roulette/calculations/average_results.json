@@ -1,0 +1,50 @@
+{
+  "black_counter": {
+    "max": 29.0,
+    "mean": 4.71,
+    "min": 0.0,
+    "std": 2.39
+  },
+  "final_bet_money": {
+    "max": 17179869184.0,
+    "mean": 39480.56,
+    "min": 64.0,
+    "std": 19467952.96
+  },
+  "green_counter": {
+    "max": 6.0,
+    "mean": 0.26,
+    "min": 0.0,
+    "std": 0.51
+  },
+  "lowest_player_wallet": {
+    "max": 0.0,
+    "mean": -38497.16,
+    "min": -17178820555.0,
+    "std": 19466113.84
+  },
+  "red_counter": {
+    "max": 7.0,
+    "mean": 4.72,
+    "min": 2.0,
+    "std": 1.07
+  },
+  "total_spent": {
+    "max": 34359738367.0,
+    "mean": 78960.12,
+    "min": 127.0,
+    "std": 38935905.91
+  },
+  "try_number": {
+    "max": 1000000.0,
+    "mean": 500000.5,
+    "min": 1.0,
+    "std": 288675.28
+  },
+  "won_amount": {
+    "max": 33554455.0,
+    "mean": 1319.04,
+    "min": 101.0,
+    "std": 83296.02
+  }
+}
