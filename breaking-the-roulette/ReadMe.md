@@ -1,4 +1,4 @@
-Breaking the Roulette
+# Breaking the Roulette
 
 ### Introduction:
 The Breaking the Roulette project aims to evaluate the effectiveness of winning the casino roulette game. The project uses simulations of 1 million casino roulette games to test the effectiveness of the martingale strategy under ideal conditions, assuming infinite money and no table limits.
